@@ -25,8 +25,9 @@ public class Main {
     public static void main(String[] args){
         
         market = new Supermarket();
-        market.getWhouse().loadWarehouseFromFile("C:\\MyData\\Orders\\order6\\code\\warehouseitems.txt");
-        loadCustomerShelfFromFile("C:\\MyData\\Orders\\order6\\code\\customerShelf.txt");
+        market.getWhouse().loadWarehouseFromFile("warehouseitems.txt");
+        loadCustomerShelfFromFile("customerShelf.txt");
+        loadManager();
         while(true) {
             int opt = MainMenu();
 
@@ -41,8 +42,7 @@ public class Main {
                 String name = in.nextLine();
                 System.out.print("Enter Manager's Email: ");
                 String email = in.nextLine();
-                if(name.equals("manager") && email.equals("manager123")) {
-                    manager = new Manager(id, name, email);
+                if(checkManager(id,name,email)) {
                     while (true) {
                         int choice1 = ManagerMenu();
                         switch (choice1) {
@@ -154,8 +154,9 @@ public class Main {
                 }
             }
             if (opt == -1) {
-                market.getWhouse().storeWarehouseInFile("C:\\MyData\\Orders\\order6\\code\\warehouseitems.txt");
-                storeCustomerShelfInFile("C:\\MyData\\Orders\\order6\\code\\customerShelf.txt");
+                market.getWhouse().storeWarehouseInFile("warehouseitems.txt");
+                storeCustomerShelfInFile("customerShelf.txt");
+                storeManager(manager);
                 break;
             }
         }
@@ -471,8 +472,43 @@ public class Main {
         }
     }
 
+    public static void storeManager(Manager manager) {
+        try {
+            FileWriter writer = new FileWriter("manager.txt");
+            writer.write(manager.getId() + "," + manager.getName() + "," + manager.getEmail() + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadManager() {
+        try {
+            FileReader fileReader = new FileReader("manager.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            if (line != null) {
+                String[] data = line.split(",");
+                int id = Integer.parseInt(data[0]);
+                String name = data[1];
+                String email = data[2];
+                manager = new Manager(id, name, email);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+
+    public static boolean checkManager(int id, String name, String email)
+    {
+        if(manager.getId() == id && manager.getName().equals(name) && manager.getEmail().equals(email)){
+            return true;
+        }
+        return false;
+    }
 
 
 
