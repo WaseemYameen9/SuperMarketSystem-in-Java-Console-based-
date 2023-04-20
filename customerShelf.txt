@@ -1,2 +1,3 @@
 soap,1,front
 Lays,10,back
+ghee,5,medium

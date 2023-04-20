@@ -38,29 +38,6 @@ public class CustomerShelf {
         Position = position;
     }
 
-   /* CustomerShelf(){
-        items = new Stack<>();
-    }
-    
-    public void add(Item item){
-        items.add(item);
-    }
-    
-    public void getItem(){
-        items.pop();
-    }
-    
-    public int getSize(){
-        return items.size();
-    }
-    
-    public void display(){
-        for (Item item : items) {
-            System.out.println(item.toString());
-        }
-    }
-
-    */
 
     
 }

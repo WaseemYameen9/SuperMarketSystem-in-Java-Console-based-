@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Manager {
     
@@ -38,6 +39,24 @@ public class Manager {
     @Override
     public String toString() {
         return "ID: " + id + ", Name: "+ name + ", Email: " + email;
+    }
+
+    public static int ManagerMenu()
+    {
+        System.out.println("|---------------------------------------|");
+        System.out.println("|              Manager                  |");
+        System.out.println("|---------------------------------------|");
+        System.out.println("|1. Create Item                         |");
+        System.out.println("|2. Display Available Items             |");
+        System.out.println("|3. Add Items on Customer Shelf         |");
+        System.out.println("|4. Display Customer Shelf              |");
+        System.out.println("|5. Display Items Less then Threshold   |");
+        System.out.println("|6. Logout                              |");
+        System.out.println("|---------------------------------------|");
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter Your Option:");
+        int op = in.nextInt();;
+        return op;
     }
     
 }
